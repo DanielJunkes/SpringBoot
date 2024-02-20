@@ -10,10 +10,12 @@ import org.springframework.context.annotation.Profile;
 
 import com.tutorialSpring.AprendendoSpring.entities.Category;
 import com.tutorialSpring.AprendendoSpring.entities.Order;
+import com.tutorialSpring.AprendendoSpring.entities.Product;
 import com.tutorialSpring.AprendendoSpring.entities.User;
 import com.tutorialSpring.AprendendoSpring.entities.enums.OrderStatus;
 import com.tutorialSpring.AprendendoSpring.repositories.CategoryRepository;
 import com.tutorialSpring.AprendendoSpring.repositories.OrderRepository;
+import com.tutorialSpring.AprendendoSpring.repositories.ProductRepository;
 import com.tutorialSpring.AprendendoSpring.repositories.UserRepository;
 
 @Configuration
@@ -28,6 +30,9 @@ public class TestConfig implements CommandLineRunner{
 	
 	@Autowired
 	private CategoryRepository categoryRepository;
+	
+	@Autowired
+	private ProductRepository productRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -43,8 +48,15 @@ public class TestConfig implements CommandLineRunner{
 		Category cat2 = new Category(0, "Books");
 		Category cat3 = new Category(0, "Computers");
 		
+		Product p1 = new Product(0, "The Lord of the Rings", "Lorem ipsum dolor sit amet, consectetur.", 90.5, "");
+		Product p2 = new Product(0, "Smart TV", "Nulla eu imperdiet purus. Maecenas ante.", 2190.0, "");
+		Product p3 = new Product(0, "Macbook Pro", "Nam eleifend maximus tortor, at mollis.", 1250.0, "");
+		Product p4 = new Product(0, "PC Gamer", "Donec aliquet odio ac rhoncus cursus.", 1200.0, "");
+		Product p5 = new Product(0, "Rails for Dummies", "Cras fringilla convallis sem vel faucibus.", 100.99, "");
+		
 		userRepository.saveAll(Arrays.asList(u1, u2));
 		orderRepository.saveAll(Arrays.asList(o1, o2, o3));
 		categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
+		productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
 	}
 }
