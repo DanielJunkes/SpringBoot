@@ -9,25 +9,25 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.tutorialSpring.AprendendoSpring.entities.User;
-import com.tutorialSpring.AprendendoSpring.services.UserService;
+import com.tutorialSpring.AprendendoSpring.entities.Order;
+import com.tutorialSpring.AprendendoSpring.services.OrderService;
 
 @RestController
-@RequestMapping(value = "/users") //rota web
-public class UserResource {
+@RequestMapping(value = "/orders") //rota web
+public class OrderResource {
 	
 	@Autowired
-	private UserService ser;
+	private OrderService ser;
 	
 	@GetMapping
-	public ResponseEntity<List<User>> findAll(){
-		List<User> obj = ser.findAll();
+	public ResponseEntity<List<Order>> findAll(){
+		List<Order> obj = ser.findAll();
 		return ResponseEntity.ok().body(obj);
 	}
 	
 	@GetMapping(value = "/{id}") //buscar por ID, ID sendo parametro da url
-	public ResponseEntity<User> findById(@PathVariable long id){
-		User obj = ser.findById(id);
+	public ResponseEntity<Order> findById(@PathVariable long id){
+		Order obj = ser.findById(id);
 		return ResponseEntity.ok().body(obj);
 	}
 }

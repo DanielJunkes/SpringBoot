@@ -13,14 +13,14 @@ import com.tutorialSpring.AprendendoSpring.repositories.UserRepository;
 public class UserService {
 	
 	@Autowired
-	private UserRepository userRep;
+	private UserRepository rep;
 	
 	public List<User> findAll(){
-		return userRep.findAll();
+		return rep.findAll();
 	}
 	
 	public User findById(long id) {
-		Optional<User> obj = userRep.findById(id);
+		Optional<User> obj = rep.findById(id);
 		return obj.get();
 	}
 }
