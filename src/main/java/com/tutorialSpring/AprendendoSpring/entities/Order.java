@@ -79,6 +79,14 @@ public class Order implements Serializable{
 		this.client = client;
 	}
 	
+	public Payment getPayment() {
+		return payment;
+	}
+
+	public void setPayment(Payment payment) {
+		this.payment = payment;
+	}
+	
 	public OrderStatus getOrderStatus() {
 		return OrderStatus.valueOf(orderStatus);
 	}
@@ -93,12 +101,12 @@ public class Order implements Serializable{
 		return items;
 	}
 
-	public Payment getPayment() {
-		return payment;
-	}
-
-	public void setPayment(Payment payment) {
-		this.payment = payment;
+	public double getTotal() {
+		double total = 0;
+		for(OrderItem obj : items) {
+			total += obj.getSubTotal();
+		}
+		return total;
 	}
 
 	@Override
