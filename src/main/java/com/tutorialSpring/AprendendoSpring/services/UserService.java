@@ -12,6 +12,8 @@ import com.tutorialSpring.AprendendoSpring.repositories.UserRepository;
 import com.tutorialSpring.AprendendoSpring.services.exceptions.DatabaseException;
 import com.tutorialSpring.AprendendoSpring.services.exceptions.ResourceNotFoundException;
 
+import jakarta.persistence.EntityNotFoundException;
+
 @Service
 public class UserService {
 
@@ -43,9 +45,13 @@ public class UserService {
 	}
 
 	public User Update(long id, User obj) {
+		try {
 		User entity = rep.getReferenceById(id);
 		updateData(entity, obj);
 		return rep.save(entity);
+		}catch(EntityNotFoundException e) {
+			throw new ResourceNotFoundException(id);
+		}
 	}
 
 	private void updateData(User entity, User obj) {
